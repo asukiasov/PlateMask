@@ -1,0 +1,75 @@
+{
+  "name": "plate-mask",
+  "version": "0.0.0",
+  "description": "Lightweight, zero-dependency Vanilla JS input mask engine for international license plates.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Aleksandr Sukiasov",
+  "keywords": [
+    "license-plate",
+    "input-mask",
+    "mask",
+    "vanilla-js",
+    "formatter",
+    "zero-dependency"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/plate-mask.mjs",
+  "module": "./dist/plate-mask.mjs",
+  "types": "./dist/types/index.d.ts",
+  "unpkg": "./dist/plate-mask.umd.min.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/plate-mask.mjs"
+    },
+    "./core": {
+      "types": "./dist/types/core/index.d.ts",
+      "import": "./dist/core.mjs"
+    },
+    "./presets/*": {
+      "types": "./dist/types/presets/*.d.ts",
+      "import": "./dist/presets/*.mjs"
+    }
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "build": "rollup -c && tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "size": "npm run build && size-limit",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "size-limit": [
+    {
+      "name": "core + dom",
+      "path": "dist/plate-mask.mjs",
+      "limit": "2 KB"
+    },
+    {
+      "name": "core only",
+      "path": "dist/core.mjs",
+      "limit": "1.2 KB"
+    }
+  ],
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.50.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@size-limit/preset-small-lib": "^11.0.0",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "happy-dom": "^17.0.0",
+    "rollup": "^4.0.0",
+    "size-limit": "^11.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  }
+}
